@@ -39,6 +39,7 @@
         <commons-fileupload.version>1.3.1</commons-fileupload.version>
         <jedis.version>2.7.2</jedis.version>
         <solrj.version>4.10.3</solrj.version>
+        <plugin.mybatis.generator>1.3.1</plugin.mybatis.generator>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -213,6 +214,12 @@
         </plugins>
         <pluginManagement>
             <plugins>
+                <!-- Mybatis generator代码生成插件 配置 -->
+                <plugin>
+                    <groupId>org.mybatis.generator</groupId>
+                    <artifactId>mybatis-generator-maven-plugin</artifactId>
+                    <version>${plugin.mybatis.generator}</version>
+                </plugin>
                 <!-- 配置Tomcat插件 -->
                 <plugin>
                     <groupId>org.apache.tomcat.maven</groupId>
