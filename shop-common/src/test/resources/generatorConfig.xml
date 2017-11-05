@@ -40,8 +40,17 @@
         </javaClientGenerator>
 
         <!--对应数据库表名 -->
-        <table tableName="">
+        <table tableName="tb_content"></table>
+        <table tableName="tb_content_category"></table>
+        <table tableName="tb_item"></table>
+        <table tableName="tb_item_cat"></table>
+        <table tableName="tb_item_desc"></table>
+        <table tableName="tb_item_param"></table>
+        <table tableName="tb_item_param_item"></table>
+        <table tableName="tb_order"></table>
+        <table tableName="tb_order_item"></table>
+        <table tableName="tb_order_shipping"></table>
+        <table tableName="tb_user"></table>
 
-        </table>
     </context>
 </generatorConfiguration>
