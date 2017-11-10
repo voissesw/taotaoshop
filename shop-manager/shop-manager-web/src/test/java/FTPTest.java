@@ -9,14 +9,14 @@ import java.io.IOException;
  * Created by YC on 2017/11/6.
  */
 public class FTPTest {
-    FileInputStream stream = new FileInputStream("C:\\Users\\YC\\Desktop\\p专业软件\\QQ图片20150611115548.gif");
+    FileInputStream stream = new FileInputStream("D:\\腾讯游戏\\英雄联盟\\Air\\assets\\storeImages\\content\\skins\\championsskin_57010.jpg");
 
     public FTPTest() throws FileNotFoundException {
     }
 
     @Test
     public void testFtpClient() throws IOException {
-        System.out.println(FtpUtil.uploadFile("192.168.199.118", 21, "ftpuser", "admin", "/home/ftpuser/upload", "/2017/11/6", "1.jpg", stream));
+        System.out.println(FtpUtil.uploadFile("ftp.voissesw.com", 21, "ftpuser", "admin", "/home/ftpuser/upload", "/2017/11/6", "1.jpg", stream));
 //        FTPClient ftpClient = new FTPClient();
 //        ftpClient.connect("192.168.199.118",21);
 //        ftpClient.login("ftpuser","admin");

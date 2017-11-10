@@ -137,7 +137,7 @@ public class FtpUtil {
 	
 	public static void main(String[] args) {
 		try {  
-	        FileInputStream in=new FileInputStream(new File("C:\\Users\\YC\\Desktop\\p专业软件\\QQ图片20150611115548.gif"));
+	        FileInputStream in=new FileInputStream(new File("D:\\腾讯游戏\\英雄联盟\\Air\\assets\\storeImages\\content\\skins\\championsskin_57010.jpg"));
 	        boolean flag = uploadFile("192.168.199.118", 21, "ftpuser", "admin", "/","/2015/01/21", "gaigeming.gif", in);
 	        System.out.println(flag);  
 	    } catch (FileNotFoundException e) {  

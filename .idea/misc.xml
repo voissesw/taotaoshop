@@ -9,12 +9,12 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/shop-common/pom.xml" />
         <option value="$PROJECT_DIR$/shop-manager/pom.xml" />
+        <option value="$PROJECT_DIR$/shop-manager/shop-manager-web/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/shop-manager-mapper/pom.xml" />
-        <option value="$PROJECT_DIR$/shop-manager/shop-manager-web/pom.xml" />
       </set>
     </option>
   </component>

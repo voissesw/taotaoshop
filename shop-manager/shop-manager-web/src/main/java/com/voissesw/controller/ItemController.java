@@ -1,5 +1,6 @@
 package com.voissesw.controller;
 
+import com.voissesw.common.easyui.pojo.DataGridResult;
 import com.voissesw.pojo.TbItem;
 import com.voissesw.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +16,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ItemController {
 
     @Autowired
-    ItemService itemService;
+    private ItemService itemService;
 
     @RequestMapping("/item/{itemId}")
     @ResponseBody
-    public TbItem getItemById(@PathVariable Long itemId){
+    public TbItem getItemById(@PathVariable Long itemId) {
         TbItem item = itemService.selectById(itemId);
         return item;
+    }
+
+    @RequestMapping("/item/list")
+    @ResponseBody
+    public DataGridResult getItemById(int page, int rows) {
+        DataGridResult result = itemService.selectItemList(page, rows);
+        return result;
     }
 }

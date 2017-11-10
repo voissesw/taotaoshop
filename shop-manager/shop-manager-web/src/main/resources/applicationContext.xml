@@ -34,7 +34,7 @@
         <!--</property>-->
     <!--</bean>-->
     <!--另一种写法，不可同时存在-->
-    <context:property-placeholder location="classpath:application.properties"/>
+    <context:property-placeholder location="classpath:*.properties"/>
 
     <!-- dataSource 配置 -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
