@@ -1,12 +1,13 @@
 package com.voissesw.mapper;
 
+import com.voissesw.common.generic.GenericDao;
 import com.voissesw.pojo.TbItemCat;
 import com.voissesw.pojo.TbItemCatExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface TbItemCatMapper {
+public interface TbItemCatMapper extends GenericDao<TbItemCat,Long> {
     int countByExample(TbItemCatExample example);
 
     int deleteByExample(TbItemCatExample example);

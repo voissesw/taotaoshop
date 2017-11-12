@@ -44,7 +44,7 @@ public class PictureServiceImpl implements PictureService {
             String oldName = uploadFile.getOriginalFilename();
             String newName = UUID.randomUUID().toString() + oldName.substring(oldName.lastIndexOf('.'));
             String imagePath = new DateTime().toString("/yyyy/MM/dd");
-            boolean result = FtpUtil.uploadFile(FTP_USERNAME, FTP_PORT, FTP_USERNAME, FTP_PASSWORD, FTP_BASEPATH, imagePath, newName, uploadFile.getInputStream());
+            boolean result = FtpUtil.uploadFile(FTP_ADDRESS, FTP_PORT, FTP_USERNAME, FTP_PASSWORD, FTP_BASEPATH, imagePath, newName, uploadFile.getInputStream());
             if (!result) {
                 resultMap.put("error", 1);
                 resultMap.put("message", "文件上传失败");
