@@ -1,16 +1,14 @@
 package com.voissesw.controller;
 
 import com.voissesw.common.easyui.pojo.DataGridResult;
+import com.voissesw.common.pojo.TaotaoResult;
 import com.voissesw.pojo.TbItem;
 import com.voissesw.pojo.TbItemCat;
 import com.voissesw.service.ItemCatService;
 import com.voissesw.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -58,7 +56,12 @@ public class ItemController {
             catList.add(node);
         }
         return catList;
+    }
 
+    @RequestMapping(value = "/item/save", method = RequestMethod.POST)
+    @ResponseBody
+    public TaotaoResult installItem(TbItem item) {
+        return itemService.insertItem(item);
     }
 
 

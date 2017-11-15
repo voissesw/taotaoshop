@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface TbItemMapper extends GenericDao<TbItem,Long> {
+public interface TbItemMapper extends GenericDao<TbItem, Long> {
     int countByExample(TbItemExample example);
 
     int deleteByExample(TbItemExample example);

@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.voissesw.common.easyui.pojo.DataGridResult;
 import com.voissesw.common.generic.GenericDao;
 import com.voissesw.common.generic.GenericServiceImpl;
+import com.voissesw.common.pojo.TaotaoResult;
 import com.voissesw.mapper.TbItemMapper;
 import com.voissesw.pojo.TbItem;
 import com.voissesw.pojo.TbItemCatExample;
@@ -13,6 +14,7 @@ import com.voissesw.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -43,5 +45,13 @@ public class ItemServiceImpl extends GenericServiceImpl<TbItem, Long> implements
         PageInfo<TbItem> info = new PageInfo<>(tbItems);
         result.setTotal(info.getTotal());
         return result;
+    }
+    @Override
+    public TaotaoResult insertItem(TbItem item){
+        item.setStatus((byte) 1);
+        item.setCreated(new Date());
+        item.setUpdated(new Date());
+        tbItemMapper.insert(item);
+        return TaotaoResult.ok();
     }
 }
