@@ -15,7 +15,7 @@ public class TbItemDesc {
         return itemId;
     }
 
-    public void setItemId(Long itemId) {
+    public void setItemId(long itemId) {
         this.itemId = itemId;
     }
 

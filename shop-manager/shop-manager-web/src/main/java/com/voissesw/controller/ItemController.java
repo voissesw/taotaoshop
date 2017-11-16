@@ -60,9 +60,8 @@ public class ItemController {
 
     @RequestMapping(value = "/item/save", method = RequestMethod.POST)
     @ResponseBody
-    public TaotaoResult installItem(TbItem item) {
-        return itemService.insertItem(item);
+    public TaotaoResult insertItem(TbItem item,String desc,String itemParams) {
+        return itemService.insertItem(item,desc,itemParams);
     }
-
 
 }
