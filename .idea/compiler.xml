@@ -11,6 +11,8 @@
         <module name="shop-manager-pojo" />
         <module name="shop-manager-service" />
         <module name="shop-manager-web" />
+        <module name="shop-rest" />
+        <module name="taotoarest" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -20,7 +22,9 @@
       <module name="shop-manager-pojo" target="1.7" />
       <module name="shop-manager-service" target="1.7" />
       <module name="shop-manager-web" target="1.7" />
+      <module name="shop-rest" target="1.7" />
       <module name="taotaoshop" target="1.7" />
+      <module name="taotoarest" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>

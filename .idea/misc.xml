@@ -2,6 +2,8 @@
 <project version="4">
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/shop-manager" />
+    <file type="web" url="file://$PROJECT_DIR$/shop-rest" />
+    <file type="web" url="file://$PROJECT_DIR$/taotoa-rest" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
@@ -10,6 +12,7 @@
         <option value="$PROJECT_DIR$/shop-common/pom.xml" />
         <option value="$PROJECT_DIR$/shop-manager/pom.xml" />
         <option value="$PROJECT_DIR$/shop-manager/shop-manager-web/pom.xml" />
+        <option value="$PROJECT_DIR$/shop-rest/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
