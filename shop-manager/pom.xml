@@ -37,7 +37,7 @@
                     <port>8080</port>
                     <path>/</path>
                     <uriEncoding>UTF-8</uriEncoding>
-                    <finalName>mgr</finalName>
+                    <finalName>manager</finalName>
                     <server>tomcat7</server>
                 </configuration>
             </plugin>
