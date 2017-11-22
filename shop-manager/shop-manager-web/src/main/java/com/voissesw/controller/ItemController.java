@@ -1,6 +1,7 @@
 package com.voissesw.controller;
 
 import com.voissesw.common.easyui.pojo.DataGridResult;
+import com.voissesw.common.easyui.pojo.EUTreeNode;
 import com.voissesw.common.pojo.TaotaoResult;
 import com.voissesw.pojo.TbItem;
 import com.voissesw.pojo.TbItemCat;
@@ -44,15 +45,15 @@ public class ItemController {
     @RequestMapping("/item/cat/list")
     @ResponseBody
     public List getItemCat(@RequestParam(value="id", defaultValue="0") Long parentId) {
-        List catList = new ArrayList();
+        List<EUTreeNode> catList = new ArrayList();
         //查询数据库
         List<TbItemCat> list = itemCatService.selectItemCatByParentId(parentId);
         for (TbItemCat tbItemCat : list) {
-            Map node = new HashMap<>();
-            node.put("id", tbItemCat.getId());
-            node.put("text", tbItemCat.getName());
+            EUTreeNode node = new EUTreeNode();
+            node.setId(tbItemCat.getId());
+            node.setText(tbItemCat.getName());
             //如果是父节点的话就设置成关闭状态，如果是叶子节点就是open状态
-            node.put("state", tbItemCat.getIsParent()?"closed":"open");
+            node.setState(tbItemCat.getIsParent()?"closed":"open");
             catList.add(node);
         }
         return catList;

@@ -1,12 +1,13 @@
 package com.voissesw.mapper;
 
+import com.voissesw.common.generic.GenericDao;
 import com.voissesw.pojo.TbContentCategory;
 import com.voissesw.pojo.TbContentCategoryExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface TbContentCategoryMapper {
+public interface TbContentCategoryMapper extends GenericDao<TbContentCategory,Long> {
     int countByExample(TbContentCategoryExample example);
 
     int deleteByExample(TbContentCategoryExample example);

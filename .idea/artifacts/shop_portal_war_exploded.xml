@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="taotao-portal:war exploded">
-    <output-path>$PROJECT_DIR$/taotao-portal/target/taotao-portal</output-path>
+  <artifact type="exploded-war" name="shop-portal:war exploded">
+    <output-path>$PROJECT_DIR$/shop-portal/target/taotao-portal</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">

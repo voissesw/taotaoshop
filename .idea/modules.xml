@@ -8,8 +8,8 @@
       <module fileurl="file://$PROJECT_DIR$/shop-manager/shop-manager-pojo/shop-manager-pojo.iml" filepath="$PROJECT_DIR$/shop-manager/shop-manager-pojo/shop-manager-pojo.iml" />
       <module fileurl="file://$PROJECT_DIR$/shop-manager/shop-manager-service/shop-manager-service.iml" filepath="$PROJECT_DIR$/shop-manager/shop-manager-service/shop-manager-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/shop-manager/shop-manager-web/shop-manager-web.iml" filepath="$PROJECT_DIR$/shop-manager/shop-manager-web/shop-manager-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shop-portal/shop-portal.iml" filepath="$PROJECT_DIR$/shop-portal/shop-portal.iml" />
       <module fileurl="file://$PROJECT_DIR$/shop-rest/shop-rest.iml" filepath="$PROJECT_DIR$/shop-rest/shop-rest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/taotao-portal/taotao-portal.iml" filepath="$PROJECT_DIR$/taotao-portal/taotao-portal.iml" />
       <module fileurl="file://$PROJECT_DIR$/taotaoshop.iml" filepath="$PROJECT_DIR$/taotaoshop.iml" />
     </modules>
   </component>

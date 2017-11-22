@@ -11,6 +11,7 @@
         <module name="shop-manager-pojo" />
         <module name="shop-manager-service" />
         <module name="shop-manager-web" />
+        <module name="shop-portal" />
         <module name="shop-rest" />
         <module name="taotao-portal" />
         <module name="taotoarest" />
@@ -23,6 +24,7 @@
       <module name="shop-manager-pojo" target="1.7" />
       <module name="shop-manager-service" target="1.7" />
       <module name="shop-manager-web" target="1.7" />
+      <module name="shop-portal" target="1.7" />
       <module name="shop-rest" target="1.7" />
       <module name="taotao-portal" target="1.7" />
       <module name="taotaoshop" target="1.7" />
