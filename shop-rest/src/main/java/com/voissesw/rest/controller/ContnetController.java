@@ -1,22 +1,24 @@
 package com.voissesw.rest.controller;
 
-import com.voissesw.common.json.JsonUtils;
-import com.voissesw.rest.pojo.CatResult;
-import com.voissesw.rest.service.ItemCatService;
+import com.voissesw.common.pojo.TaotaoResult;
+import com.voissesw.pojo.TbContent;
+import com.voissesw.rest.service.ContentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 /**
  * Created by YC on 2017/11/6.
  */
 @Controller
-public class ItemController {
+@RequestMapping("content")
+public class ContnetController {
     @Autowired
-    private ItemCatService itemCatService;
+    private ContentService contentService;
 //
 //    @RequestMapping(value = "itemcat/all", produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
 //    @ResponseBody
@@ -26,13 +28,18 @@ public class ItemController {
 //        return callback + "(" + s + ");";
 //    }
 
-    @RequestMapping("/itemcat/all")
+    @RequestMapping("/list/{contentCategoryId}")
     @ResponseBody
-    public Object getitamcat(String callback) {
-        CatResult itemCatNode = itemCatService.getItemCatNode();
-        MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(itemCatNode);
-        mappingJacksonValue.setJsonpFunction(callback);
-        return mappingJacksonValue;
+    public Object getitamcat(@PathVariable Long contentCategoryId) {
+
+        try {
+            List<TbContent> contents = contentService.selectContentList(contentCategoryId);
+            return TaotaoResult.ok(contents);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return TaotaoResult.build(500,e.getMessage());
+        }
+
     }
 
 

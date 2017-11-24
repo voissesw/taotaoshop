@@ -1,6 +1,6 @@
 package com.voissesw.controller;
 
-import com.voissesw.common.easyui.pojo.DataGridResult;
+import com.voissesw.common.easyui.pojo.EUDataGridResult;
 import com.voissesw.common.easyui.pojo.EUTreeNode;
 import com.voissesw.common.pojo.TaotaoResult;
 import com.voissesw.pojo.TbItem;
@@ -12,9 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by YC on 2017/11/6.
@@ -37,8 +35,8 @@ public class ItemController {
 
     @RequestMapping("/item/list")
     @ResponseBody
-    public DataGridResult getItemList(int page, int rows) {
-        DataGridResult result = itemService.selectItemList(page, rows);
+    public EUDataGridResult getItemList(int page, int rows) {
+        EUDataGridResult result = itemService.selectItemList(page, rows);
         return result;
     }
 

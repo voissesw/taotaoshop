@@ -1,4 +1,4 @@
-package com.voissesw.service.impl;
+package com.voissesw.service;
 
 import com.voissesw.common.generic.GenericService;
 import com.voissesw.common.pojo.TaotaoResult;
@@ -13,4 +13,6 @@ public interface ContentCategoryService extends GenericService<TbContentCategory
     List<TbContentCategory> selectContentCategoryByParentId(long parentId);
 
     TaotaoResult insertContentCategory(long parentId, String name);
+
+    TaotaoResult deleteContentCategory(long id);
 }

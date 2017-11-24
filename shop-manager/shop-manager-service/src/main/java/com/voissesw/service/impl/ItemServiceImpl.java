@@ -2,10 +2,9 @@ package com.voissesw.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.voissesw.common.easyui.pojo.DataGridResult;
+import com.voissesw.common.easyui.pojo.EUDataGridResult;
 import com.voissesw.common.generic.GenericDao;
 import com.voissesw.common.generic.GenericServiceImpl;
-import com.voissesw.common.pojo.DaoException;
 import com.voissesw.common.pojo.ServiceException;
 import com.voissesw.common.pojo.TaotaoResult;
 import com.voissesw.mapper.TbItemDescMapper;
@@ -43,14 +42,14 @@ public class ItemServiceImpl extends GenericServiceImpl<TbItem, Long> implements
     }
 
     @Override
-    public DataGridResult selectItemList(int page, int rows) {
-        TbItemExample example = new TbItemExample();
+    public EUDataGridResult selectItemList(int page, int rows) {
         PageHelper.startPage(page, rows);
+        TbItemExample example = new TbItemExample();
         List<TbItem> tbItems = tbItemMapper.selectByExample(example);
-        DataGridResult result = new DataGridResult();
+        EUDataGridResult result = new EUDataGridResult();
         result.setRows(tbItems);
-        PageInfo<TbItem> info = new PageInfo<>(tbItems);
-        result.setTotal(info.getTotal());
+        PageInfo<TbItem> pageInfo = new PageInfo<>(tbItems);
+        result.setTotal(pageInfo.getTotal());
         return result;
     }
 

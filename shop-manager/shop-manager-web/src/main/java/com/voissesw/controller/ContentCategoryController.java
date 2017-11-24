@@ -1,11 +1,9 @@
 package com.voissesw.controller;
 
 import com.voissesw.common.easyui.pojo.EUTreeNode;
-import com.voissesw.common.generic.GenericService;
 import com.voissesw.common.pojo.TaotaoResult;
 import com.voissesw.pojo.TbContentCategory;
-import com.voissesw.pojo.TbItemCat;
-import com.voissesw.service.impl.ContentCategoryService;
+import com.voissesw.service.ContentCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -50,8 +47,19 @@ public class ContentCategoryController  {
 
     @RequestMapping("/update")
     @ResponseBody
-    public TaotaoResult updateCantentCategory(int id, String name) {
-        return TaotaoResult.ok(null);
+    public TaotaoResult updateCantentCategory(long id, String name) {
+        TbContentCategory contentCategory = new TbContentCategory();
+        contentCategory.setId(id);
+        contentCategory.setName(name);
+        contentCategoryService.update(contentCategory);
+        return TaotaoResult.ok();
     }
+
+    @RequestMapping("/delete")
+    @ResponseBody
+    public TaotaoResult deleteCantentCategory(long id) {
+        return contentCategoryService.deleteContentCategory(id);
+    }
+
 
 }

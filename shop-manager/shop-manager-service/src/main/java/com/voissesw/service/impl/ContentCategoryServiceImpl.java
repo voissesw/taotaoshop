@@ -6,7 +6,7 @@ import com.voissesw.common.pojo.TaotaoResult;
 import com.voissesw.mapper.TbContentCategoryMapper;
 import com.voissesw.pojo.TbContentCategory;
 import com.voissesw.pojo.TbContentCategoryExample;
-import org.aspectj.weaver.ast.Var;
+import com.voissesw.service.ContentCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,6 +48,28 @@ public class ContentCategoryServiceImpl extends GenericServiceImpl<TbContentCate
             tbContentCategoryMapper.updateByPrimaryKey(parentContentCategory);
         }
         return TaotaoResult.ok(contentCategory);
+    }
+
+    @Override
+    public TaotaoResult deleteContentCategory(long id) {
+        TbContentCategory deleteCategory = tbContentCategoryMapper.selectByPrimaryKey(id);
+        if (deleteCategory==null){
+            TaotaoResult.ok();
+        }
+        long parentId = deleteCategory.getParentId();
+        tbContentCategoryMapper.deleteByPrimaryKey(id);
+        TbContentCategoryExample example = new TbContentCategoryExample();
+        TbContentCategoryExample.Criteria criteria = example.createCriteria();
+        criteria.andParentIdEqualTo(parentId);
+        List<TbContentCategory> list = tbContentCategoryMapper.selectByExample(example);
+        if (list == null ||  list.size() == 0) {
+            TbContentCategory contentCategory = new TbContentCategory();
+            contentCategory.setId(parentId);
+            contentCategory.setIsParent(false);
+            tbContentCategoryMapper.updateByPrimaryKeySelective(contentCategory);
+        }
+
+        return TaotaoResult.ok();
     }
 
     @Override

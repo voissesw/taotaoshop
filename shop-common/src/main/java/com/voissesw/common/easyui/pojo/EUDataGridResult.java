@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by hasee on 2017/11/10.
  */
-public class DataGridResult {
+public class EUDataGridResult {
     private long total;
     private List<?> rows;
 
