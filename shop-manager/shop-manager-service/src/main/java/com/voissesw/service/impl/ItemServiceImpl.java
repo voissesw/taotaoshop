@@ -14,6 +14,7 @@ import com.voissesw.pojo.*;
 import com.voissesw.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sun.rmi.runtime.Log;
 
 import java.util.Date;
 import java.util.List;
@@ -59,8 +60,11 @@ public class ItemServiceImpl extends GenericServiceImpl<TbItem, Long> implements
         item.setStatus((byte) 1);
         item.setCreated(date);
         item.setUpdated(date);
-        tbItemMapper.insert(item);
-        int result = insertItemDesc(item.getId(), itemDesc);
+        int result = tbItemMapper.insert(item);
+        if (result == 0) {
+            throw new ServiceException();
+        }
+        result = insertItemDesc(item.getId(), itemDesc);
         if (result == 0) {
             throw new ServiceException();
         }
@@ -69,6 +73,42 @@ public class ItemServiceImpl extends GenericServiceImpl<TbItem, Long> implements
             throw new ServiceException();
         }
         return TaotaoResult.ok();
+    }
+
+    @Override
+    public TaotaoResult updateItem(TbItem item, String itemDesc, String itemParam, Long itemParamId) {
+        Date date = new Date();
+        item.setUpdated(date);
+        int result = tbItemMapper.updateByPrimaryKeySelective(item);
+        if (result == 0) {
+            throw new ServiceException();
+        }
+
+        TbItemDesc tbItemDesc = new TbItemDesc();
+        tbItemDesc.setUpdated(date);
+        tbItemDesc.setItemId(item.getId());
+        tbItemDesc.setItemDesc(itemDesc);
+        result = tbItemDescMapper.updateByPrimaryKeyWithBLOBs(tbItemDesc);
+        if (result == 0) {
+            throw new ServiceException();
+        }
+
+        TbItemParamItem itemParamItem = new TbItemParamItem();
+        itemParamItem.setId(itemParamId);
+        itemParamItem.setItemId(item.getId());
+        itemParamItem.setParamData(itemParam);
+        itemParamItem.setUpdated(date);
+        result = tbItemParamItemMapper.updateByPrimaryKeySelective(itemParamItem);
+        if (result == 0) {
+            throw new ServiceException();
+        }
+        return TaotaoResult.ok();
+    }
+
+    @Override
+    public TaotaoResult SelectItemDesc(Long ItemId) {
+        TbItemDesc itemDesc = tbItemDescMapper.selectByPrimaryKey(ItemId);
+        return TaotaoResult.ok(itemDesc);
     }
 
     private int insertItemParam(long itemId, String itemParam) {

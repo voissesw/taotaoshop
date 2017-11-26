@@ -13,4 +13,9 @@ public interface ItemService extends GenericService<TbItem,Long> {
     EUDataGridResult selectItemList(int page, int rows);
 
     TaotaoResult insertItem(TbItem item, String itemDesc, String itemParam);
+
+
+    TaotaoResult updateItem(TbItem item, String itemDesc, String itemParam, Long itemParamId);
+
+    TaotaoResult SelectItemDesc(Long ItemId);
 }

@@ -34,5 +34,10 @@ public class ItemParamController {
         itemParam.setParamData(paramData);
         return itemParamService.insertItemParam(itemParam);
     }
+    @RequestMapping("/item/query/{ItemId}")
+    @ResponseBody
+    public TaotaoResult getItemParam(@PathVariable Long ItemId) {
+        return itemParamService.selectItemParamByItemId(ItemId);
+    }
 
 }

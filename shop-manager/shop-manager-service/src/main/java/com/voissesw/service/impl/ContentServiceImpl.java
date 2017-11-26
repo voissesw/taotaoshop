@@ -13,6 +13,7 @@ import com.voissesw.service.ContentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -51,6 +52,21 @@ public class ContentServiceImpl extends GenericServiceImpl<TbContent, Long> impl
         tbContent.setCreated(date);
         tbContent.setUpdated(date);
         tbContentMapper.insertSelective(tbContent);
+        return TaotaoResult.ok();
+    }
+
+    @Override
+    public TaotaoResult deleteByIds(Long[] ids) {
+        TbContentExample example = new TbContentExample();
+        example.createCriteria().andIdIn(Arrays.asList(ids));
+        tbContentMapper.deleteByExample(example);
+        return TaotaoResult.ok();
+    }
+
+    @Override
+    public TaotaoResult updateTBContent(TbContent tbContent) {
+        tbContent.setUpdated(new Date());
+        tbContentMapper.updateByPrimaryKeySelective(tbContent);
         return TaotaoResult.ok();
     }
 

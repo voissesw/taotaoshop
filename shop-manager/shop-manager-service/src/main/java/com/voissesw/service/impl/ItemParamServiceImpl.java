@@ -1,9 +1,12 @@
 package com.voissesw.service.impl;
 
 import com.voissesw.common.pojo.TaotaoResult;
+import com.voissesw.mapper.TbItemParamItemMapper;
 import com.voissesw.mapper.TbItemParamMapper;
 import com.voissesw.pojo.TbItemParam;
 import com.voissesw.pojo.TbItemParamExample;
+import com.voissesw.pojo.TbItemParamItem;
+import com.voissesw.pojo.TbItemParamItemExample;
 import com.voissesw.service.ItemParamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +23,8 @@ public class ItemParamServiceImpl implements ItemParamService {
 
     @Autowired
     private TbItemParamMapper ItemParamMapper;
+    @Autowired
+    private TbItemParamItemMapper itemParamItemMapper;
 
     @Override
     public TaotaoResult selectItemParamByCid(long cid){
@@ -38,6 +43,18 @@ public class ItemParamServiceImpl implements ItemParamService {
         itemParam.setCreated(date);
         itemParam.setUpdated(date);
         ItemParamMapper.insert(itemParam);
+        return TaotaoResult.ok();
+    }
+
+    @Override
+    public TaotaoResult selectItemParamByItemId(Long itemId) {
+        TbItemParamItemExample example = new TbItemParamItemExample();
+        TbItemParamItemExample.Criteria criteria = example.createCriteria();
+        criteria.andItemIdEqualTo(itemId);
+        List<TbItemParamItem> list = itemParamItemMapper.selectByExampleWithBLOBs(example);
+        if (list != null && list.size() > 0) {
+            return TaotaoResult.ok(list.get(0));
+        }
         return TaotaoResult.ok();
     }
 

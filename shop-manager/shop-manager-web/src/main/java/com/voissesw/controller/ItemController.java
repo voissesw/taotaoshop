@@ -63,4 +63,18 @@ public class ItemController {
         return itemService.insertItem(item,desc,itemParams);
     }
 
+
+
+    @RequestMapping(value = "/item/query/item/desc/{id}")
+    @ResponseBody
+    public TaotaoResult getItemDesc(@PathVariable Long id) {
+        return itemService.SelectItemDesc(id);
+    }
+
+    @RequestMapping(value = "/item/update", method = RequestMethod.POST)
+    @ResponseBody
+    public TaotaoResult updateItem(TbItem item,String desc,String itemParams,Long itemParamId) {
+        return itemService.updateItem(item,desc,itemParams,itemParamId);
+    }
+
 }

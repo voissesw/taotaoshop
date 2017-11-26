@@ -10,4 +10,6 @@ public interface ItemParamService {
     TaotaoResult selectItemParamByCid(long cid);
 
     TaotaoResult insertItemParam(TbItemParam itemParam);
+
+    TaotaoResult selectItemParamByItemId(Long itemId);
 }

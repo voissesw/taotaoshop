@@ -10,4 +10,8 @@ public interface ContentService extends GenericService<TbContent,Long>{
     EUDataGridResult selectContentByCategoryId(long categoryId, int page, int rows);
 
     TaotaoResult inserTBContent(TbContent tbContent);
+
+    TaotaoResult deleteByIds(Long[] ids);
+
+    TaotaoResult updateTBContent(TbContent tbContent);
 }

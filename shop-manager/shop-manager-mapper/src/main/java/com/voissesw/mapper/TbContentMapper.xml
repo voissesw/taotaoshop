@@ -259,7 +259,7 @@
     </if>
   </update>
   <update id="updateByExampleWithBLOBs" parameterType="map" >
-    update tb_content
+      tb_content
     set id = #{record.id,jdbcType=BIGINT},
       category_id = #{record.categoryId,jdbcType=BIGINT},
       title = #{record.title,jdbcType=VARCHAR},

@@ -1,5 +1,7 @@
 package com.voissesw.common.generic;
 
+import com.voissesw.common.pojo.TaotaoResult;
+
 import java.util.List;
 
 /**
@@ -68,4 +70,5 @@ public abstract class GenericServiceImpl<Model, PK> implements GenericService<Mo
     public List<Model> selectList() {
         return null;
     }
+
 }

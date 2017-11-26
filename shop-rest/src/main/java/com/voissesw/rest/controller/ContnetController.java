@@ -19,14 +19,6 @@ import java.util.List;
 public class ContnetController {
     @Autowired
     private ContentService contentService;
-//
-//    @RequestMapping(value = "itemcat/all", produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
-//    @ResponseBody
-//    public String getitamcat(String callback) {
-//        CatResult itemCatNode = itemCatService.getItemCatNode();
-//        String s = JsonUtils.objectToJson(itemCatNode);
-//        return callback + "(" + s + ");";
-//    }
 
     @RequestMapping("/list/{contentCategoryId}")
     @ResponseBody
