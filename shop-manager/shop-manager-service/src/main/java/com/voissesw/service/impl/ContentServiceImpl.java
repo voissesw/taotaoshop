@@ -5,12 +5,14 @@ import com.github.pagehelper.PageInfo;
 import com.voissesw.common.easyui.pojo.EUDataGridResult;
 import com.voissesw.common.generic.GenericDao;
 import com.voissesw.common.generic.GenericServiceImpl;
+import com.voissesw.common.httpclient.HttpClientUtil;
 import com.voissesw.common.pojo.TaotaoResult;
 import com.voissesw.mapper.TbContentMapper;
 import com.voissesw.pojo.TbContent;
 import com.voissesw.pojo.TbContentExample;
 import com.voissesw.service.ContentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -25,6 +27,11 @@ public class ContentServiceImpl extends GenericServiceImpl<TbContent, Long> impl
 
     @Autowired
     TbContentMapper tbContentMapper;
+    @Value("${REST_BASE_URL}")
+    private String REST_BASE_URL;
+
+    @Value("${REST_CONTENT_SYNC_URL}")
+    private String REST_CONTENT_SYNC_URL;
 
 
     @Override
@@ -45,13 +52,15 @@ public class ContentServiceImpl extends GenericServiceImpl<TbContent, Long> impl
         result.setTotal(pageInfo.getTotal());
         return result;
     }
-@Override
+
+    @Override
 
     public TaotaoResult inserTBContent(TbContent tbContent) {
         Date date = new Date();
         tbContent.setCreated(date);
         tbContent.setUpdated(date);
         tbContentMapper.insertSelective(tbContent);
+        HttpClientUtil.doGet(REST_BASE_URL + REST_CONTENT_SYNC_URL + tbContent.getId());
         return TaotaoResult.ok();
     }
 

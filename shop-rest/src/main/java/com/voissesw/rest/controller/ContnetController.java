@@ -15,24 +15,21 @@ import java.util.List;
  * Created by YC on 2017/11/6.
  */
 @Controller
-@RequestMapping("content")
+@RequestMapping("/content")
 public class ContnetController {
     @Autowired
     private ContentService contentService;
 
-    @RequestMapping("/list/{contentCategoryId}")
+    @RequestMapping("/list/{contentCid}")
     @ResponseBody
-    public Object getitamcat(@PathVariable Long contentCategoryId) {
-
+    public Object getContentList(@PathVariable Long contentCid) {
         try {
-            List<TbContent> contents = contentService.selectContentList(contentCategoryId);
+            List<TbContent> contents = contentService.selectContentList(contentCid);
             return TaotaoResult.ok(contents);
         } catch (Exception e) {
             e.printStackTrace();
             return TaotaoResult.build(500,e.getMessage());
         }
-
     }
-
 
 }
