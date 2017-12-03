@@ -84,6 +84,9 @@
                     <uriEncoding>UTF-8</uriEncoding>
                     <finalName>search</finalName>
                     <server>tomcat7</server>
+                    <systemProperties>
+                        <JAVA_OPTS>-Xms256m -Xmx1024m -XX:MaxPermSize=256m</JAVA_OPTS>
+                    </systemProperties>
                 </configuration>
             </plugin>
             <plugin>

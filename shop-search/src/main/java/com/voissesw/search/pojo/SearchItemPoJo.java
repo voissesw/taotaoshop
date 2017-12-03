@@ -13,7 +13,7 @@ public class SearchItemPoJo {
     @Field("item_sell_point")
     private String item_sell_point;
     @Field("item_price")
-    private String item_price;
+    private Long item_price;
     @Field("item_image")
     private String item_image;
     @Field("item_category_name")
@@ -45,11 +45,11 @@ public class SearchItemPoJo {
         this.item_sell_point = item_sell_point;
     }
 
-    public String getItem_price() {
+    public Long getItem_price() {
         return item_price;
     }
 
-    public void setItem_price(String item_price) {
+    public void setItem_price(Long item_price) {
         this.item_price = item_price;
     }
 
