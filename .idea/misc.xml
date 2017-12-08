@@ -5,6 +5,7 @@
     <file type="web" url="file://$PROJECT_DIR$/shop-portal" />
     <file type="web" url="file://$PROJECT_DIR$/shop-rest" />
     <file type="web" url="file://$PROJECT_DIR$/shop-search" />
+    <file type="web" url="file://$PROJECT_DIR$/shop-sso" />
     <file type="web" url="file://$PROJECT_DIR$/taotoa-rest" />
   </component>
   <component name="MavenProjectsManager">
@@ -15,6 +16,7 @@
         <option value="$PROJECT_DIR$/shop-rest/pom.xml" />
         <option value="$PROJECT_DIR$/shop-common/pom.xml" />
         <option value="$PROJECT_DIR$/shop-portal/pom.xml" />
+        <option value="$PROJECT_DIR$/shop-sso/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

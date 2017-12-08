@@ -14,6 +14,7 @@
         <module name="shop-portal" />
         <module name="shop-rest" />
         <module name="shop-search" />
+        <module name="shop-sso" />
         <module name="taotao-portal" />
         <module name="taotoarest" />
       </profile>
@@ -28,6 +29,7 @@
       <module name="shop-portal" target="1.7" />
       <module name="shop-rest" target="1.7" />
       <module name="shop-search" target="1.7" />
+      <module name="shop-sso" target="1.7" />
       <module name="taotao-portal" target="1.7" />
       <module name="taotaoshop" target="1.7" />
       <module name="taotoarest" target="1.7" />
