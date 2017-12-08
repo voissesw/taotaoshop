@@ -8,7 +8,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>shop-portal</artifactId>
     <packaging>war</packaging>
-    <name>taotao-portal Maven Webapp</name>
+    <name>shop-portal</name>
     <url>http://maven.apache.org</url>
     <dependencies>
         <dependency>
@@ -93,6 +93,25 @@
                                 <directory>web</directory>
                             </resource>
                         </webResources>
+                    </configuration>
+                </plugin>
+                <!-- jerebel maven 插件，用于生成jrebel.xml -->
+                <plugin>
+                    <groupId>org.zeroturnaround</groupId>
+                    <artifactId>jrebel-maven-plugin</artifactId>
+                    <version>1.1.7</version>
+                    <executions>
+                        <execution>
+                            <id>generate-rebel-xml</id>
+                            <phase>process-resources</phase>
+                            <goals>
+                                <goal>generate</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <rebelXmlDirectory>${basedir}/web/WEB-INF/classes</rebelXmlDirectory>
+                        <!-- 指定生成的jrebel.xml放在哪里， 要求放在web应用的 classpath下 -->
                     </configuration>
                 </plugin>
             </plugins>
