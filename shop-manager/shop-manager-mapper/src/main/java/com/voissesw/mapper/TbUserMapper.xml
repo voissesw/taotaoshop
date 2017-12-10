@@ -3,13 +3,12 @@
 <mapper namespace="com.voissesw.mapper.TbUserMapper" >
   <resultMap id="BaseResultMap" type="com.voissesw.pojo.TbUser" >
     <id column="id" property="id" jdbcType="BIGINT" />
-    <id column="updated" property="updated" jdbcType="TIMESTAMP" />
     <result column="username" property="username" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="email" property="email" jdbcType="VARCHAR" />
     <result column="created" property="created" jdbcType="TIMESTAMP" />
-    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="updated" property="updated" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -70,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, updated, username, password, phone, email, created, state
+    id, username, password, phone, email, created, updated
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.voissesw.pojo.TbUserExample" >
     select
@@ -86,17 +85,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.voissesw.pojo.TbUserKey" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
     from tb_user
     where id = #{id,jdbcType=BIGINT}
-      and updated = #{updated,jdbcType=TIMESTAMP}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="com.voissesw.pojo.TbUserKey" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from tb_user
     where id = #{id,jdbcType=BIGINT}
-      and updated = #{updated,jdbcType=TIMESTAMP}
   </delete>
   <delete id="deleteByExample" parameterType="com.voissesw.pojo.TbUserExample" >
     delete from tb_user
@@ -105,21 +102,18 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.voissesw.pojo.TbUser" >
-    insert into tb_user (id, updated, username, 
-      password, phone, email, 
-      created, state)
-    values (#{id,jdbcType=BIGINT}, #{updated,jdbcType=TIMESTAMP}, #{username,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
-      #{created,jdbcType=TIMESTAMP}, #{state,jdbcType=INTEGER})
+    insert into tb_user (id, username, password, 
+      phone, email, created, 
+      updated)
+    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, 
+      #{updated,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.voissesw.pojo.TbUser" >
     insert into tb_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
-      </if>
-      <if test="updated != null" >
-        updated,
       </if>
       <if test="username != null" >
         username,
@@ -136,16 +130,13 @@
       <if test="created != null" >
         created,
       </if>
-      <if test="state != null" >
-        state,
+      <if test="updated != null" >
+        updated,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=BIGINT},
-      </if>
-      <if test="updated != null" >
-        #{updated,jdbcType=TIMESTAMP},
       </if>
       <if test="username != null" >
         #{username,jdbcType=VARCHAR},
@@ -162,8 +153,8 @@
       <if test="created != null" >
         #{created,jdbcType=TIMESTAMP},
       </if>
-      <if test="state != null" >
-        #{state,jdbcType=INTEGER},
+      <if test="updated != null" >
+        #{updated,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -178,9 +169,6 @@
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=BIGINT},
-      </if>
-      <if test="record.updated != null" >
-        updated = #{record.updated,jdbcType=TIMESTAMP},
       </if>
       <if test="record.username != null" >
         username = #{record.username,jdbcType=VARCHAR},
@@ -197,8 +185,8 @@
       <if test="record.created != null" >
         created = #{record.created,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.state != null" >
-        state = #{record.state,jdbcType=INTEGER},
+      <if test="record.updated != null" >
+        updated = #{record.updated,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -208,13 +196,12 @@
   <update id="updateByExample" parameterType="map" >
     update tb_user
     set id = #{record.id,jdbcType=BIGINT},
-      updated = #{record.updated,jdbcType=TIMESTAMP},
       username = #{record.username,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=VARCHAR},
       email = #{record.email,jdbcType=VARCHAR},
       created = #{record.created,jdbcType=TIMESTAMP},
-      state = #{record.state,jdbcType=INTEGER}
+      updated = #{record.updated,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -237,12 +224,11 @@
       <if test="created != null" >
         created = #{created,jdbcType=TIMESTAMP},
       </if>
-      <if test="state != null" >
-        state = #{state,jdbcType=INTEGER},
+      <if test="updated != null" >
+        updated = #{updated,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
-      and updated = #{updated,jdbcType=TIMESTAMP}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.voissesw.pojo.TbUser" >
     update tb_user
@@ -251,8 +237,7 @@
       phone = #{phone,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       created = #{created,jdbcType=TIMESTAMP},
-      state = #{state,jdbcType=INTEGER}
+      updated = #{updated,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
-      and updated = #{updated,jdbcType=TIMESTAMP}
   </update>
 </mapper>

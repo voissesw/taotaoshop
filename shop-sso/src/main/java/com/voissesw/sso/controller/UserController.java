@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 @RequestMapping("/user")
 @Controller
 public class UserController {
@@ -38,7 +41,7 @@ public class UserController {
         }
         return result;
     }
-    @RequestMapping(value = "/regist",method = RequestMethod.GET)
+    @RequestMapping(value = "/register",method = RequestMethod.POST)
     @ResponseBody
     public TaotaoResult UserRegist(TbUser user) {
         try {
@@ -49,26 +52,39 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "/login",method = RequestMethod.GET)
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
     @ResponseBody
-    public TaotaoResult UserLogin(TbUser user) {
+    public TaotaoResult UserLogin(TbUser user, HttpServletRequest request, HttpServletResponse response) {
         try {
-            return userService.loginUser(user);
+            return userService.loginUser(user,request,response);
         } catch (Exception e) {
             e.printStackTrace();
             return TaotaoResult.build(500, e.getMessage());
         }
     }
 
-    @RequestMapping(value = "/token{token}",method = RequestMethod.GET)
+    @RequestMapping(value = "/logout")
+    public String UserLogout( HttpServletRequest request, HttpServletResponse response) {
+            userService.logoutUser(request,response);
+        return "redirect:http://localhost:8082";
+    }
+
+    @RequestMapping(value = "/token/{token}",method = RequestMethod.GET)
     @ResponseBody
-    public TaotaoResult getUserByToken(@PathVariable String token) {
+    public Object getUserByToken(@PathVariable String token,String  callback) {
+        TaotaoResult result;
         try {
-            return userService.getUserByToken(token);
+            result = userService.getUserByToken(token);
         } catch (Exception e) {
             e.printStackTrace();
-            return TaotaoResult.build(500, e.getMessage());
+            result= TaotaoResult.build(500, e.getMessage());
         }
+        if (StringUtils.isNotBlank(callback)) {
+            MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(result);
+            mappingJacksonValue.setJsonpFunction(callback);
+            return mappingJacksonValue;
+        }
+        return result;
     }
 
 }

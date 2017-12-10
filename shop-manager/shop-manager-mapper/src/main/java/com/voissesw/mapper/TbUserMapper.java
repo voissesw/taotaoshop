@@ -2,17 +2,15 @@ package com.voissesw.mapper;
 
 import com.voissesw.pojo.TbUser;
 import com.voissesw.pojo.TbUserExample;
-import com.voissesw.pojo.TbUserKey;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface TbUserMapper {
     int countByExample(TbUserExample example);
 
     int deleteByExample(TbUserExample example);
 
-    int deleteByPrimaryKey(TbUserKey key);
+    int deleteByPrimaryKey(Long id);
 
     int insert(TbUser record);
 
@@ -20,7 +18,7 @@ public interface TbUserMapper {
 
     List<TbUser> selectByExample(TbUserExample example);
 
-    TbUser selectByPrimaryKey(TbUserKey key);
+    TbUser selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") TbUser record, @Param("example") TbUserExample example);
 

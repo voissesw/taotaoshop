@@ -1,5 +1,6 @@
 package com.voissesw.sso.service.impl;
 
+import com.voissesw.common.cookie.CookieUtils;
 import com.voissesw.common.json.JsonUtils;
 import com.voissesw.common.pojo.TaotaoResult;
 import com.voissesw.mapper.TbUserMapper;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 import redis.clients.jedis.JedisCluster;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -62,7 +65,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public TaotaoResult loginUser(TbUser user) {
+    public TaotaoResult loginUser(TbUser user, HttpServletRequest request, HttpServletResponse response) {
         TbUserExample example = new TbUserExample();
         example.createCriteria().andUsernameEqualTo(user.getUsername());
         List<TbUser> list = tbUserMapper.selectByExample(example);
@@ -79,7 +82,15 @@ public class UserServiceImpl implements UserService {
         String s = JsonUtils.objectToJson(tbUser);
         jedisCluster.set(REDIS_USER_SESSION_KEY + ":" + token, s);
         jedisCluster.expire(REDIS_USER_SESSION_KEY + ":" + token, REDIS_USER_SESSION_EXPIRE);
+
+        CookieUtils.addCookie(response, "TT_TOKEN", token, "/", -1);
         return TaotaoResult.ok(token);
+    }
+
+    @Override
+    public void logoutUser(HttpServletRequest request, HttpServletResponse response) {
+        String token = CookieUtils.getCookie(request, response, "TT_TOKEN");
+        jedisCluster.del(REDIS_USER_SESSION_KEY + ":" + token);
     }
 
     @Override

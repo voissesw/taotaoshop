@@ -2,7 +2,9 @@ package com.voissesw.pojo;
 
 import java.util.Date;
 
-public class TbUser extends TbUserKey {
+public class TbUser {
+    private Long id;
+
     private String username;
 
     private String password;
@@ -13,7 +15,15 @@ public class TbUser extends TbUserKey {
 
     private Date created;
 
-    private Integer state;
+    private Date updated;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;
@@ -55,11 +65,11 @@ public class TbUser extends TbUserKey {
         this.created = created;
     }
 
-    public Integer getState() {
-        return state;
+    public Date getUpdated() {
+        return updated;
     }
 
-    public void setState(Integer state) {
-        this.state = state;
+    public void setUpdated(Date updated) {
+        this.updated = updated;
     }
 }

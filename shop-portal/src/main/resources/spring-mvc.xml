@@ -22,4 +22,11 @@
     <!--标准配置-->
     <mvc:default-servlet-handler/>
     <mvc:annotation-driven/>
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/item/**"/>
+            <bean class="com.voissesw.portal.interceptor.loginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>
